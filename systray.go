@@ -106,6 +106,10 @@ func Register(onReady func(), onExit func()) {
 	registerSystray()
 }
 
+func OnLeftClick(callback func()) {
+	wt.setLeftButtonCallback(callback)
+}
+
 // Quit the systray
 func Quit() {
 	quitOnce.Do(quit)

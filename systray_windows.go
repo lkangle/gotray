@@ -1,3 +1,4 @@
+//go:build windows
 // +build windows
 
 package systray
@@ -202,6 +203,8 @@ type winTray struct {
 
 	wmSystrayMessage,
 	wmTaskbarCreated uint32
+
+	leftButtonCallback func()
 }
 
 // Loads an image from file and shows it in tray.
@@ -277,8 +280,10 @@ func (t *winTray) wndProc(hWnd windows.Handle, message uint32, wParam, lParam ui
 		systrayExit()
 	case t.wmSystrayMessage:
 		switch lParam {
-		case WM_RBUTTONUP, WM_LBUTTONUP:
+		case WM_RBUTTONUP:
 			t.showMenu()
+		case WM_LBUTTONUP:
+			t.clickLeftButton()
 		}
 	case t.wmTaskbarCreated: // on explorer.exe restarts
 		t.muNID.Lock()
@@ -295,6 +300,18 @@ func (t *winTray) wndProc(hWnd windows.Handle, message uint32, wParam, lParam ui
 		)
 	}
 	return
+}
+
+func (t *winTray) clickLeftButton() {
+	if t.leftButtonCallback != nil {
+		t.leftButtonCallback()
+		return
+	}
+	t.showMenu()
+}
+
+func (t *winTray) setLeftButtonCallback(callback func()) {
+	t.leftButtonCallback = callback
 }
 
 func (t *winTray) initInstance() error {

@@ -20,6 +20,9 @@ func main() {
 }
 
 func onReady() {
+	systray.OnLeftClick(func() {
+		fmt.Println("left button click...")
+	})
 	systray.SetTemplateIcon(icon.Data, icon.Data)
 	systray.SetTitle("Awesome App")
 	systray.SetTooltip("Lantern")
