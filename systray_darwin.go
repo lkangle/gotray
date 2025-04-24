@@ -1,4 +1,4 @@
-package systray
+package gotray
 
 /*
 #cgo darwin CFLAGS: -DDARWIN -x objective-c -fobjc-arc

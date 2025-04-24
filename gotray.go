@@ -1,7 +1,7 @@
 /*
-Package systray is a cross-platform Go library to place an icon and menu in the notification area.
+package gotray is a cross-platform Go library to place an icon and menu in the notification area.
 */
-package systray
+package gotray
 
 import (
 	"fmt"

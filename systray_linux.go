@@ -1,4 +1,4 @@
-package systray
+package gotray
 
 // SetTemplateIcon sets the systray icon as a template icon (on macOS), falling back
 // to a regular icon on other platforms.

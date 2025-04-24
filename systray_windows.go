@@ -1,7 +1,7 @@
 //go:build windows
 // +build windows
 
-package systray
+package gotray
 
 import (
 	"crypto/md5"

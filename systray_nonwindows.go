@@ -1,7 +1,9 @@
+//go:build !windows
 // +build !windows
+
 // go:build !windows
 
-package systray
+package gotray
 
 // #include "systray.h"
 import "C"
