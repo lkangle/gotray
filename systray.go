@@ -106,6 +106,10 @@ func Register(onReady func(), onExit func()) {
 	registerSystray()
 }
 
+func OnLeftClick(callback func()) {
+	wt.setLeftButtonCallback(callback)
+}
+
 // Quit the systray. This can be called from any goroutine.
 func Quit() {
 	quitOnce.Do(quit)
